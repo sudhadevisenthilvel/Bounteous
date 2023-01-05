@@ -1,0 +1,23 @@
+a[role="tab"] {
+  padding: 5px;
+}
+a[role="tab"]:hover {
+  background-color: #e7e2e7;
+}
+a[role="tab"].active {
+  border-bottom: 2px solid #000;
+}
+.successMsg {
+  padding: 15px;
+  background-color: #32e960;
+  position: fixed;
+  top: 10px;
+  width: 80%;
+  text-align: center;
+}
+button {
+  padding: 5px 10px;
+  background-color: #4966c4;
+  color: white;
+  border: 1px solid #4966c4;
+}

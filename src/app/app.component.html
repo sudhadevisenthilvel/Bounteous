@@ -1,0 +1,49 @@
+<div>
+  <div style="display: flex; width: 100%;">
+    <a
+      role="tab"
+      *ngFor="let page of pages"
+      (click)="navigateTo(page.id)"
+      [class.active]="(pageDetailsObj.selectedPage == page.id)"
+    >
+      {{page.name}}
+    </a>
+  </div>
+  <ng-container
+    *ngTemplateOutlet="textTemplate; context: {pageDetail: pages[pageDetailsObj.selectedPage - 1]}"
+  >
+  </ng-container>
+</div>
+<div *ngIf="pageDetailsObj.showSuccessMsg" class="successMsg">
+  <span>Details Updated </span>
+</div>
+<ng-template #textTemplate let-pageDetail="pageDetail">
+  <div style="width: 100%;">
+    <h4>{{pageDetail.title}}</h4>
+    <label style="margin: 0px 5px;">{{pageDetail.fieldName}}</label>
+    <input [(ngModel)]="pageDetailsObj[pageDetail.paramKey]" />
+  </div>
+  <div style="width: 100%; margin-top: 10px;">
+    <button
+      style="float: left;"
+      *ngIf="pageDetail.id !== 1"
+      (click)="saveDraft('BACK')"
+    >
+      Back
+    </button>
+    <button
+      style="float: right;"
+      *ngIf="pageDetail.id !== pages.length"
+      (click)="saveDraft('NEXT')"
+    >
+      Next
+    </button>
+    <button
+      style="float: right;"
+      *ngIf="pageDetail.id === pages.length"
+      (click)="saveDraft('FINISH')"
+    >
+      Finish
+    </button>
+  </div>
+</ng-template>
